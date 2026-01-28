@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  quizzes   Quiz[]
+  games     Game[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Quiz {
+  id          String     @id @default(cuid())
+  title       String
+  description String?
+  userId      String
+  user        User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions   Question[]
+  games       Game[]
+  isPublic    Boolean    @default(false)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([userId])
+}
+
+model Question {
+  id        String       @id @default(cuid())
+  quizId    String
+  quiz      Quiz         @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  text      String
+  type      QuestionType @default(MULTIPLE_CHOICE)
+  timeLimit Int          @default(20)
+  points    Int          @default(1000)
+  options   Json
+  order     Int
+  imageUrl  String?
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@index([quizId])
+}
+
+model Game {
+  id        String     @id @default(cuid())
+  pin       String     @unique
+  quizId    String
+  quiz      Quiz       @relation(fields: [quizId], references: [id])
+  hostId    String
+  host      User       @relation(fields: [hostId], references: [id])
+  status    GameStatus @default(LOBBY)
+  isPublic  Boolean    @default(false)
+  results   Json?
+  startedAt DateTime?
+  endedAt   DateTime?
+  createdAt DateTime   @default(now())
+
+  @@index([pin])
+  @@index([hostId])
+  @@index([quizId])
+  @@index([status, isPublic])
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE
+  TRUE_FALSE
+}
+
+enum GameStatus {
+  LOBBY
+  ACTIVE
+  FINISHED
+}

@@ -10,7 +10,20 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "db:generate": "turbo db:generate",
     "db:push": "turbo db:push",
-    "db:studio": "pnpm --filter @gameblitz/database studio"
+    "db:studio": "pnpm --filter @gameblitz/database studio",
+    "db:migrate": "./scripts/db-migrate.sh migrate",
+    "db:migrate:status": "./scripts/db-migrate.sh status",
+    "db:migrate:create": "./scripts/db-migrate.sh create",
+    "db:backup": "./scripts/db-migrate.sh backup",
+    "db:restore": "./scripts/db-migrate.sh restore",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:skip-backup": "./scripts/deploy.sh --skip-backup",
+    "deploy:force": "./scripts/deploy.sh --force",
+    "health": "./scripts/health-check.sh",
+    "docker:up": "docker-compose -f docker-compose.prod.yml up -d",
+    "docker:down": "docker-compose -f docker-compose.prod.yml down",
+    "docker:logs": "docker-compose -f docker-compose.prod.yml logs -f",
+    "docker:build": "docker-compose -f docker-compose.prod.yml build"
   },
   "devDependencies": {
     "@types/node": "^20.11.0",

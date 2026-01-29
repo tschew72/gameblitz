@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { GameConfig, PILLAR_COLORS, PillarType } from '../../data/content';
+import { ExitGameModal } from '@/components/game/ExitGameModal';
 
 interface RapidResponseProps {
   config: GameConfig;
@@ -46,6 +47,7 @@ export function RapidResponse({ config, waveColor, onComplete, onBack }: RapidRe
   const [bestStreak, setBestStreak] = useState(0);
   const [trails, setTrails] = useState<TrailPoint[]>([]);
   const [lastHitTime, setLastHitTime] = useState(0);
+  const [showExitModal, setShowExitModal] = useState(false);
   const effectIdRef = useRef(0);
   const trailIdRef = useRef(0);
   const totalTargetsRef = useRef(0);
@@ -500,6 +502,14 @@ export function RapidResponse({ config, waveColor, onComplete, onBack }: RapidRe
         );
       })}
 
+      {/* Exit Modal */}
+      <ExitGameModal
+        isOpen={showExitModal}
+        onConfirm={onBack}
+        onCancel={() => setShowExitModal(false)}
+        gameName={config.title}
+      />
+
       {/* HUD */}
       <div className="fixed top-0 left-0 right-0 p-4 z-20">
         <div className="max-w-lg mx-auto">
@@ -517,7 +527,17 @@ export function RapidResponse({ config, waveColor, onComplete, onBack }: RapidRe
             />
           </div>
 
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center px-2 py-2 bg-gradient-to-r from-white/5 to-transparent rounded-xl">
+            <button
+              onClick={() => setShowExitModal(true)}
+              className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all border border-white/10"
+              aria-label="Exit game"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
             <div>
               <span
                 className="text-4xl font-black"

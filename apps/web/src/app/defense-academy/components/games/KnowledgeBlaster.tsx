@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { GameConfig, QuizQuestion, PILLAR_INFO } from '../../data/content';
+import { ExitGameModal } from '@/components/game/ExitGameModal';
 
 interface KnowledgeBlasterProps {
   game: GameConfig;
@@ -39,6 +40,7 @@ export function KnowledgeBlaster({ game, waveColor, onComplete, onBack }: Knowle
   const [questionsAsked, setQuestionsAsked] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [showFact, setShowFact] = useState<string | null>(null);
+  const [showExitModal, setShowExitModal] = useState(false);
 
   const enemyIdRef = useRef(0);
   const explosionIdRef = useRef(0);
@@ -356,17 +358,31 @@ export function KnowledgeBlaster({ game, waveColor, onComplete, onBack }: Knowle
     <main className="min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900" />
 
+      {/* Exit Modal */}
+      <ExitGameModal
+        isOpen={showExitModal}
+        onConfirm={onBack}
+        onCancel={() => setShowExitModal(false)}
+        gameName={game.title}
+      />
+
       {/* HUD */}
-      <div className="fixed top-0 left-0 right-0 p-4 z-30">
+      <div className="fixed top-0 left-0 right-0 p-3 z-30 bg-gradient-to-b from-black/50 to-transparent">
         <div className="max-w-lg mx-auto flex justify-between items-center">
+          <button
+            onClick={() => setShowExitModal(true)}
+            className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all border border-white/10"
+            aria-label="Exit game"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <div>
-            <span className="text-3xl font-black" style={{ color: waveColor }}>{score}</span>
+            <span className="text-2xl font-black" style={{ color: waveColor }}>{score}</span>
           </div>
-          <div className="text-2xl">
-            {lives > 0 ? '❤️'.repeat(lives) : '💔'}
-          </div>
-          <div className="text-white/60">
-            {correctAnswers}/{questionsAsked}
+          <div className="flex items-center gap-3">
+            <span className="text-xl">{lives > 0 ? '❤️'.repeat(lives) : '💔'}</span>
           </div>
         </div>
       </div>

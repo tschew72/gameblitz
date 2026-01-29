@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { GameConfig } from '../../data/content';
+import { ExitGameModal } from '@/components/game/ExitGameModal';
 
 interface ShieldBuilderProps {
   config: GameConfig;
@@ -82,6 +83,7 @@ export function ShieldBuilder({ config, waveColor, onComplete, onBack }: ShieldB
   const [currentWave, setCurrentWave] = useState(0);
   const [selectedTower, setSelectedTower] = useState<string | null>(null);
   const [screenShake, setScreenShake] = useState(false);
+  const [showExitModal, setShowExitModal] = useState(false);
   const enemyIdRef = useRef(0);
   const towerIdRef = useRef(0);
   const projectileIdRef = useRef(0);
@@ -610,6 +612,14 @@ export function ShieldBuilder({ config, waveColor, onComplete, onBack }: ShieldB
         </div>
       ))}
 
+      {/* Exit Modal */}
+      <ExitGameModal
+        isOpen={showExitModal}
+        onConfirm={onBack}
+        onCancel={() => setShowExitModal(false)}
+        gameName={config.title}
+      />
+
       {/* HUD */}
       <div className="relative z-20 mb-4">
         {/* Timer bar */}
@@ -626,7 +636,16 @@ export function ShieldBuilder({ config, waveColor, onComplete, onBack }: ShieldB
           />
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center px-2 py-2 bg-gradient-to-r from-white/5 to-transparent rounded-xl">
+          <button
+            onClick={() => setShowExitModal(true)}
+            className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all border border-white/10"
+            aria-label="Exit game"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <div>
             <span
               className="text-3xl font-black"

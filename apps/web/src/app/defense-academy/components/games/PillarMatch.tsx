@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { GameConfig, QuizQuestion, PILLAR_INFO } from '../../data/content';
+import { ExitGameModal } from '@/components/game/ExitGameModal';
 
 interface PillarMatchProps {
   game: GameConfig;
@@ -30,6 +31,7 @@ export function PillarMatch({ game, waveColor, onComplete, onBack }: PillarMatch
   const [factsLearned, setFactsLearned] = useState<string[]>([]);
   const [moves, setMoves] = useState(0);
   const [showFact, setShowFact] = useState<string | null>(null);
+  const [showExitModal, setShowExitModal] = useState(false);
 
   const pairs = (game.config.pairs as number) || 6;
 
@@ -302,12 +304,28 @@ export function PillarMatch({ game, waveColor, onComplete, onBack }: PillarMatch
     <main className="min-h-screen relative overflow-hidden p-4">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-purple-950 to-slate-900" />
 
+      {/* Exit Modal */}
+      <ExitGameModal
+        isOpen={showExitModal}
+        onConfirm={onBack}
+        onCancel={() => setShowExitModal(false)}
+        gameName={game.title}
+      />
+
       {/* HUD */}
-      <div className="relative z-20 max-w-lg mx-auto mb-4">
+      <div className="relative z-20 max-w-lg mx-auto mb-4 pt-2">
         <div className="flex justify-between items-center mb-2">
+          <button
+            onClick={() => setShowExitModal(true)}
+            className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all border border-white/10"
+            aria-label="Exit game"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <span className="text-2xl font-black" style={{ color: waveColor }}>{score}</span>
-          <span className="text-xl font-bold">{matchedPairs}/{pairs}</span>
-          <span className={`text-2xl font-black ${timeLeft <= 10 ? 'text-red-500 animate-pulse' : ''}`}>{timeLeft}s</span>
+          <span className={`text-xl font-black ${timeLeft <= 10 ? 'text-red-500 animate-pulse' : ''}`}>{timeLeft}s</span>
         </div>
         <div className="h-2 bg-white/10 rounded-full overflow-hidden">
           <div

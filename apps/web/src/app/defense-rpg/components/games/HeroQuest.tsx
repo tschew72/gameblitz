@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { GameConfig, QuizQuestion, PILLAR_INFO } from '../../data/content';
+import { ExitGameModal } from '@/components/game/ExitGameModal';
 
 interface CharacterStats {
   class: string;
@@ -49,6 +50,7 @@ export function HeroQuest({ game, waveColor, characterStats, onComplete, onBack 
   const [showDamage, setShowDamage] = useState<{ target: 'player' | 'enemy'; amount: number } | null>(null);
   const [isPlayerTurn, setIsPlayerTurn] = useState(true);
   const [questionsUsed, setQuestionsUsed] = useState(0);
+  const [showExitModal, setShowExitModal] = useState(false);
 
   const totalEnemies = (game.config.enemies as number) || 5;
   const baseEnemyHP = (game.config.enemyHP as number) || 30;
@@ -338,11 +340,28 @@ export function HeroQuest({ game, waveColor, characterStats, onComplete, onBack 
     <main className="min-h-screen relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-red-950 to-slate-950" />
 
+      {/* Exit Modal */}
+      <ExitGameModal
+        isOpen={showExitModal}
+        onConfirm={onBack}
+        onCancel={() => setShowExitModal(false)}
+        gameName={game.title}
+      />
+
       <div className="relative z-10 max-w-lg mx-auto p-4 h-screen flex flex-col">
         {/* HUD */}
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-3">
+          <button
+            onClick={() => setShowExitModal(true)}
+            className="w-10 h-10 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all border border-white/10"
+            aria-label="Exit game"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
           <span className="text-xl font-bold" style={{ color: waveColor }}>{score}</span>
-          <span className="text-white/60">Battle {enemiesDefeated + 1}/{totalEnemies}</span>
+          <span className="text-white/60 text-sm">Battle {enemiesDefeated + 1}/{totalEnemies}</span>
         </div>
 
         {/* Enemy */}

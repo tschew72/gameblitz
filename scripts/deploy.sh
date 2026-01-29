@@ -326,25 +326,15 @@ run_migrations() {
         sleep 2
     done
 
-    # Generate Prisma client
-    log "Generating Prisma client..."
-    docker run --rm \
-        --network gameblitz_default \
-        -v "${PROJECT_ROOT}:/app" \
-        -w /app \
-        -e DATABASE_URL="$DATABASE_URL" \
-        node:20-alpine \
-        sh -c "npm install -g pnpm && pnpm install --frozen-lockfile && pnpm db:generate"
-
-    # Run migrations
-    log "Running database migrations..."
+    # Generate Prisma client and run migrations
+    log "Generating Prisma client and running migrations..."
     docker run --rm \
         --network gameblitz_default \
         -v "${PROJECT_ROOT}:/app" \
         -w /app/packages/database \
         -e DATABASE_URL="$DATABASE_URL" \
-        node:20-alpine \
-        sh -c "npm install -g pnpm && pnpm install && npx prisma migrate deploy"
+        node:20-slim \
+        sh -c "apt-get update && apt-get install -y openssl && npm install -g pnpm && pnpm install --ignore-scripts && npx prisma generate && npx prisma migrate deploy"
 
     log_success "Database migrations completed"
 }

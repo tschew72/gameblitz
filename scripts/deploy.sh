@@ -361,10 +361,10 @@ build_images() {
     COMMIT_SHA=$(git rev-parse --short HEAD)
 
     docker tag gameblitz-web:latest "gameblitz-web:${COMMIT_SHA}"
-    docker tag gameblitz-socket:latest "gameblitz-socket:${COMMIT_SHA}"
+    docker tag gameblitz-socket-server:latest "gameblitz-socket-server:${COMMIT_SHA}"
 
     log_success "Docker images built and tagged"
-    log "Tagged as: gameblitz-web:${COMMIT_SHA}, gameblitz-socket:${COMMIT_SHA}"
+    log "Tagged as: gameblitz-web:${COMMIT_SHA}, gameblitz-socket-server:${COMMIT_SHA}"
 }
 
 #===============================================================================

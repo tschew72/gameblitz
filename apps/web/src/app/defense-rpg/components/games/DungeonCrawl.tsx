@@ -367,7 +367,7 @@ export function DungeonCrawl({ game, waveColor, characterStats, onComplete, onBa
             <button onClick={startGame} className="flex-1 py-4 bg-white/10 hover:bg-white/20 rounded-xl font-bold transition-all border border-white/10">
               Try Again
             </button>
-            <button onClick={() => onComplete(score, factsLearned, expEarned)} className="flex-1 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl font-bold transition-all hover:scale-105">
+            <button onClick={() => { onComplete(score, factsLearned, expEarned); onBack(); }} className="flex-1 py-4 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-xl font-bold transition-all hover:scale-105">
               Complete
             </button>
           </div>

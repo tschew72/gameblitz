@@ -342,7 +342,7 @@ export function KnowledgeBlaster({ game, waveColor, onComplete, onBack }: Knowle
               Try Again
             </button>
             <button
-              onClick={() => onComplete(score, factsLearned)}
+              onClick={() => { onComplete(score, factsLearned); onBack(); }}
               className="flex-1 py-4 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-xl font-bold transition-all hover:scale-105"
             >
               Complete

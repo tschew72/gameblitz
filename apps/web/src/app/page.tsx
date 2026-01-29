@@ -9,35 +9,26 @@ export default function HomePage() {
 
       <div className="text-center space-y-10 max-w-2xl relative z-10">
         <div className="phase-enter">
-          <h1 className="text-7xl md:text-9xl font-black tracking-tight">
-            Game<span className="text-brand-pink">Blitz</span>
+          <h1 className="text-6xl md:text-8xl font-black tracking-tight">
+            <span className="text-[#EF3340]">Defence</span><span className="text-white">Quest</span>
           </h1>
           <div className="flex justify-center gap-1.5 mt-4">
-            {['#e21b3c', '#1368ce', '#d89e00', '#26890c'].map((color, i) => (
+            {['#EF3340', '#1E3A5F', '#FFD700', '#FFFFFF'].map((color, i) => (
               <span
                 key={i}
                 className="w-2.5 h-2.5 rounded-full"
-                style={{ backgroundColor: color, opacity: 0.7, animationDelay: `${i * 0.1}s` }}
+                style={{ backgroundColor: color, opacity: 0.8, animationDelay: `${i * 0.1}s` }}
               />
             ))}
           </div>
         </div>
 
         <p className="text-xl md:text-2xl text-white/60 animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-          Create engaging real-time quiz games and challenge your friends
+          Learn about Singapore Total Defence through fun mini-games
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.4s' }}>
-          <Link href="/play" className="btn-primary text-center text-lg px-10">
-            Join a Game
-          </Link>
-          <Link href="/dashboard" className="btn-secondary text-center text-lg px-10">
-            Create a Quiz
-          </Link>
-        </div>
-
         {/* Total Defence Games */}
-        <div className="grid gap-3 animate-fadeIn" style={{ animationDelay: '0.5s' }}>
+        <div className="grid gap-3 animate-fadeIn" style={{ animationDelay: '0.4s' }}>
           <Link
             href="/defense"
             className="block bg-gradient-to-r from-[#EF3340]/20 to-[#1E3A5F]/20 border border-[#EF3340]/30 rounded-xl p-4 hover:scale-[1.02] transition-transform"
@@ -64,14 +55,21 @@ export default function HomePage() {
               <span className="text-2xl">🎮</span>
             </div>
           </Link>
-        </div>
-
-        <div className="pt-4 text-white/40 animate-fadeIn" style={{ animationDelay: '0.6s' }}>
-          <p>Already have an account?</p>
-          <Link href="/login" className="text-brand-pink hover:underline">
-            Sign in to host games
+          <Link
+            href="/defense-rpg"
+            className="block bg-gradient-to-r from-[#a855f7]/20 to-[#ec4899]/20 border border-[#a855f7]/30 rounded-xl p-4 hover:scale-[1.02] transition-transform"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-2xl">⚔️</span>
+              <div className="text-left">
+                <h3 className="font-bold text-[#a855f7]">Defence Quest RPG</h3>
+                <p className="text-sm text-white/60">Epic RPG adventure with battles and bosses</p>
+              </div>
+              <span className="text-2xl">🐉</span>
+            </div>
           </Link>
         </div>
+
       </div>
     </main>
   );

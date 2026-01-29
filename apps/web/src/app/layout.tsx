@@ -7,8 +7,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
-  title: 'GameBlitz - Real-time Quiz Games',
-  description: 'Create and host engaging real-time quiz games for your audience',
+  title: 'DefenceQuest - Singapore Total Defence Games',
+  description: 'Learn about Singapore Total Defence through fun and engaging mini-games',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

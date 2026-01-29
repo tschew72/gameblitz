@@ -28,6 +28,9 @@ BACKUP_DIR="${PROJECT_ROOT}/backups"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 LOG_FILE="${PROJECT_ROOT}/logs/deploy_${TIMESTAMP}.log"
 
+# Create necessary directories early (before any logging)
+mkdir -p "$BACKUP_DIR" "${PROJECT_ROOT}/logs"
+
 # Default values
 SKIP_BACKUP=false
 SKIP_MIGRATIONS=false

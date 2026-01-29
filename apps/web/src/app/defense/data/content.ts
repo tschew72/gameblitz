@@ -378,6 +378,12 @@ export function getWaveActivities(waveId: number) {
 
   return [
     ...wave.games.map((g) => ({ ...g, activityType: 'game' as const })),
-    ...wave.quizzes.map((q) => ({ ...q, activityType: 'quiz' as const })),
+    ...wave.quizzes.map((q, index) => ({
+      ...q,
+      activityType: 'quiz' as const,
+      title: `Quiz ${index + 1}`,
+      description: q.question.slice(0, 50) + (q.question.length > 50 ? '...' : ''),
+      type: 'quiz' as const,
+    })),
   ];
 }

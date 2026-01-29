@@ -3,6 +3,7 @@ import { redirect, notFound } from 'next/navigation';
 import { prisma } from '@gameblitz/database';
 import { authOptions } from '@/lib/auth';
 import { QuizEditor } from '@/components/quiz/QuizEditor';
+import type { QuestionOption } from '@gameblitz/types';
 
 export default async function EditQuizPage({ params }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
@@ -11,7 +12,7 @@ export default async function EditQuizPage({ params }: { params: { id: string } 
     redirect('/login');
   }
 
-  const quiz = await prisma.quiz.findFirst({
+  const quizData = await prisma.quiz.findFirst({
     where: {
       id: params.id,
       userId: session.user.id,
@@ -23,9 +24,18 @@ export default async function EditQuizPage({ params }: { params: { id: string } 
     },
   });
 
-  if (!quiz) {
+  if (!quizData) {
     notFound();
   }
+
+  // Transform Prisma data to match Quiz interface
+  const quiz = {
+    ...quizData,
+    questions: quizData.questions.map((q) => ({
+      ...q,
+      options: q.options as unknown as QuestionOption[],
+    })),
+  };
 
   return <QuizEditor quiz={quiz} />;
 }

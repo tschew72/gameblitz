@@ -36,21 +36,35 @@ export default function HomePage() {
           </Link>
         </div>
 
-        {/* Total Defence Mini-Game */}
-        <Link
-          href="/defense"
-          className="block bg-gradient-to-r from-[#EF3340]/20 to-[#1E3A5F]/20 border border-[#EF3340]/30 rounded-xl p-4 hover:scale-[1.02] transition-transform animate-fadeIn"
-          style={{ animationDelay: '0.5s' }}
-        >
-          <div className="flex items-center justify-center gap-3">
-            <span className="text-2xl">🇸🇬</span>
-            <div className="text-left">
-              <h3 className="font-bold text-[#EF3340]">Total Defence Challenge</h3>
-              <p className="text-sm text-white/60">Play action games about Singapore National Defence</p>
+        {/* Total Defence Games */}
+        <div className="grid gap-3 animate-fadeIn" style={{ animationDelay: '0.5s' }}>
+          <Link
+            href="/defense"
+            className="block bg-gradient-to-r from-[#EF3340]/20 to-[#1E3A5F]/20 border border-[#EF3340]/30 rounded-xl p-4 hover:scale-[1.02] transition-transform"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-2xl">🇸🇬</span>
+              <div className="text-left">
+                <h3 className="font-bold text-[#EF3340]">Total Defence Challenge</h3>
+                <p className="text-sm text-white/60">Play action games about Singapore National Defence</p>
+              </div>
+              <span className="text-2xl">🛡️</span>
             </div>
-            <span className="text-2xl">🛡️</span>
-          </div>
-        </Link>
+          </Link>
+          <Link
+            href="/defense-academy"
+            className="block bg-gradient-to-r from-[#6366f1]/20 to-[#0ea5e9]/20 border border-[#6366f1]/30 rounded-xl p-4 hover:scale-[1.02] transition-transform"
+          >
+            <div className="flex items-center justify-center gap-3">
+              <span className="text-2xl">🎓</span>
+              <div className="text-left">
+                <h3 className="font-bold text-[#6366f1]">Defence Academy</h3>
+                <p className="text-sm text-white/60">Learn through integrated quiz-games</p>
+              </div>
+              <span className="text-2xl">🎮</span>
+            </div>
+          </Link>
+        </div>
 
         <div className="pt-4 text-white/40 animate-fadeIn" style={{ animationDelay: '0.6s' }}>
           <p>Already have an account?</p>

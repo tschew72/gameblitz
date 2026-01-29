@@ -136,7 +136,7 @@ export default function WaveDetailPage() {
               <ActivityCard
                 key={quiz.id}
                 waveId={waveId}
-                activity={{ ...quiz, type: 'quiz' }}
+                activity={quiz}
                 isComplete={isActivityComplete(waveId, quiz.id)}
                 score={getActivityScore(waveId, quiz.id)}
                 color={wave.color}

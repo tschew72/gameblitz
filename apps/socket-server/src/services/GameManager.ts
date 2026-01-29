@@ -82,7 +82,7 @@ export class GameManager {
         type: q.type,
         timeLimit: q.timeLimit,
         points: q.points,
-        options: q.options as QuestionOption[],
+        options: q.options as unknown as QuestionOption[],
       })),
     };
 
@@ -316,7 +316,7 @@ export class GameManager {
         data: {
           status: 'FINISHED',
           endedAt: new Date(),
-          results: leaderboard,
+          results: JSON.parse(JSON.stringify(leaderboard)),
         },
       });
     } catch (error) {

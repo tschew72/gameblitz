@@ -45,33 +45,33 @@ export default function DefenceAcademyPage() {
             ← Back to GameBlitz
           </Link>
 
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <span className="text-5xl">🎓</span>
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4">
+            <span className="text-3xl sm:text-5xl">🎓</span>
             <div>
-              <h1 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-cyan-400 via-white to-purple-400 bg-clip-text text-transparent">
+              <h1 className="text-2xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-cyan-400 via-white to-purple-400 bg-clip-text text-transparent">
                 Defence Academy
               </h1>
-              <p className="text-white/60 text-lg">Learn & Play - Knowledge is Power</p>
+              <p className="text-white/60 text-sm sm:text-lg">Learn & Play - Knowledge is Power</p>
             </div>
-            <span className="text-5xl">🇸🇬</span>
+            <span className="text-3xl sm:text-5xl">🇸🇬</span>
           </div>
         </div>
 
         {/* Stats Bar */}
-        <div className="grid grid-cols-3 gap-4 mb-10 phase-enter" style={{ animationDelay: '0.1s' }}>
-          <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 text-center">
-            <p className="text-3xl font-black text-cyan-400">{totalScore.toLocaleString()}</p>
-            <p className="text-xs text-white/50">Total Score</p>
+        <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-10 phase-enter" style={{ animationDelay: '0.1s' }}>
+          <div className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-4 border border-white/10 text-center">
+            <p className="text-lg sm:text-3xl font-black text-cyan-400">{totalScore.toLocaleString()}</p>
+            <p className="text-[10px] sm:text-xs text-white/50">Total Score</p>
           </div>
-          <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 text-center">
-            <p className="text-3xl font-black text-purple-400">{factsLearned.length}</p>
-            <p className="text-xs text-white/50">Facts Learned</p>
+          <div className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-4 border border-white/10 text-center">
+            <p className="text-lg sm:text-3xl font-black text-purple-400">{factsLearned.length}</p>
+            <p className="text-[10px] sm:text-xs text-white/50">Facts Learned</p>
           </div>
-          <div className="bg-white/5 backdrop-blur-xl rounded-2xl p-4 border border-white/10 text-center">
-            <p className="text-3xl font-black text-green-400">
+          <div className="bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-2 sm:p-4 border border-white/10 text-center">
+            <p className="text-lg sm:text-3xl font-black text-green-400">
               {WAVES.filter((w) => getWaveProgress(w.id).percentage === 100).length}/4
             </p>
-            <p className="text-xs text-white/50">Waves Complete</p>
+            <p className="text-[10px] sm:text-xs text-white/50">Complete</p>
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export default function DefenceAcademyPage() {
                 {unlocked ? (
                   <Link href={`/defense-academy/wave/${wave.id}`}>
                     <div
-                      className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/10 hover:border-white/30 transition-all hover:scale-[1.02] overflow-hidden group"
+                      className="relative bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10 hover:border-white/30 transition-all hover:scale-[1.02] overflow-hidden group"
                     >
                       {/* Background glow */}
                       <div
@@ -99,29 +99,29 @@ export default function DefenceAcademyPage() {
                         style={{ background: `radial-gradient(circle at 0% 50%, ${wave.color}, transparent 50%)` }}
                       />
 
-                      <div className="relative z-10 flex items-center gap-4">
+                      <div className="relative z-10 flex items-center gap-3 sm:gap-4">
                         {/* Wave number */}
                         <div
-                          className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-black"
+                          className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl font-black shrink-0"
                           style={{ backgroundColor: wave.color }}
                         >
                           {wave.id}
                         </div>
 
                         {/* Info */}
-                        <div className="flex-1">
-                          <p className="text-sm font-medium uppercase tracking-wider opacity-60" style={{ color: wave.color }}>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs sm:text-sm font-medium uppercase tracking-wider opacity-60" style={{ color: wave.color }}>
                             {wave.subtitle}
                           </p>
-                          <h2 className="text-2xl font-bold">{wave.title}</h2>
-                          <p className="text-white/50 text-sm">{wave.description}</p>
+                          <h2 className="text-lg sm:text-2xl font-bold truncate">{wave.title}</h2>
+                          <p className="text-white/50 text-xs sm:text-sm line-clamp-1">{wave.description}</p>
 
                           {/* Pillars */}
-                          <div className="flex gap-2 mt-2">
+                          <div className="flex gap-1 sm:gap-2 mt-1 sm:mt-2">
                             {wave.pillars.map((pillar) => (
                               <span
                                 key={pillar}
-                                className="text-lg"
+                                className="text-sm sm:text-lg"
                                 title={PILLAR_INFO[pillar].name}
                               >
                                 {PILLAR_INFO[pillar].icon}
@@ -131,12 +131,12 @@ export default function DefenceAcademyPage() {
                         </div>
 
                         {/* Progress */}
-                        <div className="text-right">
-                          <p className="text-2xl font-black" style={{ color: wave.color }}>
+                        <div className="text-right shrink-0">
+                          <p className="text-lg sm:text-2xl font-black" style={{ color: wave.color }}>
                             {waveScore.toLocaleString()}
                           </p>
-                          <p className="text-xs text-white/50">pts</p>
-                          <div className="mt-2 w-24 h-2 bg-white/10 rounded-full overflow-hidden">
+                          <p className="text-[10px] sm:text-xs text-white/50">pts</p>
+                          <div className="mt-1 sm:mt-2 w-16 sm:w-24 h-1.5 sm:h-2 bg-white/10 rounded-full overflow-hidden">
                             <div
                               className="h-full rounded-full transition-all"
                               style={{
@@ -145,11 +145,11 @@ export default function DefenceAcademyPage() {
                               }}
                             />
                           </div>
-                          <p className="text-xs text-white/40 mt-1">{progress.completed}/4 games</p>
+                          <p className="text-[10px] sm:text-xs text-white/40 mt-1">{progress.completed}/4</p>
                         </div>
 
-                        {/* Arrow */}
-                        <div className="text-white/30 group-hover:text-white/60 transition-colors">
+                        {/* Arrow - hide on mobile */}
+                        <div className="hidden sm:block text-white/30 group-hover:text-white/60 transition-colors">
                           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
@@ -165,17 +165,17 @@ export default function DefenceAcademyPage() {
                     </div>
                   </Link>
                 ) : (
-                  <div className="relative bg-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/5 opacity-50">
-                    <div className="flex items-center gap-4">
-                      <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl bg-white/10">
+                  <div className="relative bg-white/5 backdrop-blur-xl rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/5 opacity-50">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl flex items-center justify-center text-2xl sm:text-3xl bg-white/10 shrink-0">
                         🔒
                       </div>
-                      <div className="flex-1">
-                        <p className="text-sm font-medium uppercase tracking-wider text-white/40">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs sm:text-sm font-medium uppercase tracking-wider text-white/40">
                           Locked
                         </p>
-                        <h2 className="text-2xl font-bold text-white/50">{wave.title}</h2>
-                        <p className="text-white/30 text-sm">Complete Wave {wave.id - 1} to unlock</p>
+                        <h2 className="text-lg sm:text-2xl font-bold text-white/50 truncate">{wave.title}</h2>
+                        <p className="text-white/30 text-xs sm:text-sm">Complete Wave {wave.id - 1} to unlock</p>
                       </div>
                     </div>
                   </div>

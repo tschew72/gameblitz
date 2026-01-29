@@ -241,7 +241,7 @@ export function PillarWarriors({ game, waveColor, characterStats, onComplete, on
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-purple-950 to-slate-950" />
         <div
           key={countdownNum}
-          className="relative z-10 text-[200px] font-black bg-gradient-to-b from-purple-400 to-pink-400 bg-clip-text text-transparent animate-countdown"
+          className="relative z-10 text-[100px] sm:text-[150px] md:text-[200px] font-black bg-gradient-to-b from-purple-400 to-pink-400 bg-clip-text text-transparent animate-countdown"
         >
           {countdownNum || 'FIGHT!'}
         </div>

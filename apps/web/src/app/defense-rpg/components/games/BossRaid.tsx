@@ -269,7 +269,7 @@ export function BossRaid({ game, waveColor, characterStats, onComplete, onBack }
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-red-950 to-slate-950" />
         <div
           key={countdownNum}
-          className="relative z-10 text-[200px] font-black bg-gradient-to-b from-red-400 via-orange-400 to-amber-400 bg-clip-text text-transparent animate-countdown"
+          className="relative z-10 text-[100px] sm:text-[150px] md:text-[200px] font-black bg-gradient-to-b from-red-400 via-orange-400 to-amber-400 bg-clip-text text-transparent animate-countdown"
         >
           {countdownNum || 'FIGHT!'}
         </div>

@@ -390,7 +390,7 @@ export function ShieldBuilder({ config, waveColor, onComplete, onBack }: ShieldB
         <div className="relative z-10 text-center">
           <div
             key={countdownNum}
-            className="text-[200px] font-black bg-gradient-to-b from-red-400 to-orange-400 bg-clip-text text-transparent animate-countdown"
+            className="text-[100px] sm:text-[150px] md:text-[200px] font-black bg-gradient-to-b from-red-400 to-orange-400 bg-clip-text text-transparent animate-countdown"
           >
             {countdownNum || 'DEFEND!'}
           </div>

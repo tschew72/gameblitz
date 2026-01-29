@@ -72,15 +72,15 @@ export default function WaveDetailPage() {
             All Waves
           </Link>
 
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-3xl">
+          <div className="flex items-center gap-2 sm:gap-3 mb-2">
+            <span className="text-2xl sm:text-3xl">
               {wave.pillars.includes('military') && '🛡️'}
               {wave.pillars.includes('digital') && !wave.pillars.includes('military') && '💻'}
               {wave.pillars.includes('economic') && !wave.pillars.includes('military') && !wave.pillars.includes('digital') && '💰'}
             </span>
             <div>
-              <p className="text-sm font-medium uppercase tracking-wider opacity-60">Wave {wave.id}</p>
-              <h1 className="text-3xl font-black">{wave.title}</h1>
+              <p className="text-xs sm:text-sm font-medium uppercase tracking-wider opacity-60">Wave {wave.id}</p>
+              <h1 className="text-2xl sm:text-3xl font-black">{wave.title}</h1>
             </div>
           </div>
           <p className="text-white/60">{wave.description}</p>
@@ -149,7 +149,7 @@ export default function WaveDetailPage() {
         {/* Pillar Legend */}
         <div className="text-center text-white/40 text-xs phase-enter" style={{ animationDelay: '0.3s' }}>
           <p className="mb-2">This wave covers:</p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
             {wave.pillars.map((pillar) => (
               <span key={pillar} className="flex items-center gap-1">
                 {pillar === 'military' && '🛡️ Military'}

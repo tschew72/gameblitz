@@ -260,7 +260,7 @@ export function KnowledgeBlaster({ game, waveColor, onComplete, onBack }: Knowle
         <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900" />
         <div
           key={countdownNum}
-          className="relative z-10 text-[200px] font-black bg-gradient-to-b from-cyan-400 to-purple-400 bg-clip-text text-transparent animate-countdown"
+          className="relative z-10 text-[100px] sm:text-[150px] md:text-[200px] font-black bg-gradient-to-b from-cyan-400 to-purple-400 bg-clip-text text-transparent animate-countdown"
         >
           {countdownNum || 'GO!'}
         </div>

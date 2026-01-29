@@ -325,7 +325,7 @@ export function DefenseDefender({ config, waveColor, onComplete, onBack }: Defen
         <div className="relative z-10 text-center">
           <div
             key={countdownNum}
-            className="text-[200px] font-black bg-gradient-to-b from-white to-purple-300 bg-clip-text text-transparent animate-countdown"
+            className="text-[100px] sm:text-[150px] md:text-[200px] font-black bg-gradient-to-b from-white to-purple-300 bg-clip-text text-transparent animate-countdown"
           >
             {countdownNum || 'GO!'}
           </div>

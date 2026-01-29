@@ -276,7 +276,7 @@ export function RapidResponse({ config, waveColor, onComplete, onBack }: RapidRe
         <div className="relative z-10 text-center">
           <div
             key={countdownNum}
-            className="text-[200px] font-black bg-gradient-to-b from-cyan-400 to-pink-400 bg-clip-text text-transparent animate-countdown"
+            className="text-[100px] sm:text-[150px] md:text-[200px] font-black bg-gradient-to-b from-cyan-400 to-pink-400 bg-clip-text text-transparent animate-countdown"
           >
             {countdownNum || 'GO!'}
           </div>
@@ -310,40 +310,40 @@ export function RapidResponse({ config, waveColor, onComplete, onBack }: RapidRe
           </div>
         )}
 
-        <div className="relative z-10 max-w-md phase-enter">
-          <div className="text-8xl mb-4">{passed ? '⚡' : '💪'}</div>
-          <h1 className="text-4xl font-black mb-2 bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">
+        <div className="relative z-10 max-w-md px-4 phase-enter">
+          <div className="text-6xl sm:text-8xl mb-4">{passed ? '⚡' : '💪'}</div>
+          <h1 className="text-2xl sm:text-4xl font-black mb-2 bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text text-transparent">
             {passed ? 'LIGHTNING FAST!' : 'KEEP TRAINING!'}
           </h1>
 
           <div
-            className="text-7xl font-black my-8 animate-score-reveal"
+            className="text-4xl sm:text-7xl font-black my-6 sm:my-8 animate-score-reveal"
             style={{ color: waveColor, textShadow: `0 0 60px ${waveColor}40` }}
           >
             {score.toLocaleString()}
           </div>
 
-          <p className="text-white/60 mb-6">Target: {config.targetScore.toLocaleString()} pts</p>
+          <p className="text-white/60 mb-4 sm:mb-6 text-sm sm:text-base">Target: {config.targetScore.toLocaleString()} pts</p>
 
-          <div className="grid grid-cols-3 gap-4 mb-8">
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <p className="text-3xl font-bold text-cyan-400">{targetsHit}</p>
-              <p className="text-xs text-white/50">Hits</p>
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-6 sm:mb-8">
+            <div className="bg-white/5 rounded-lg sm:rounded-xl p-2 sm:p-4 border border-white/10">
+              <p className="text-xl sm:text-3xl font-bold text-cyan-400">{targetsHit}</p>
+              <p className="text-[10px] sm:text-xs text-white/50">Hits</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <p className="text-3xl font-bold text-pink-400">{bestStreak}x</p>
-              <p className="text-xs text-white/50">Best Streak</p>
+            <div className="bg-white/5 rounded-lg sm:rounded-xl p-2 sm:p-4 border border-white/10">
+              <p className="text-xl sm:text-3xl font-bold text-pink-400">{bestStreak}x</p>
+              <p className="text-[10px] sm:text-xs text-white/50">Streak</p>
             </div>
-            <div className="bg-white/5 rounded-xl p-4 border border-white/10">
-              <p className="text-3xl font-bold text-yellow-400">{accuracy}%</p>
-              <p className="text-xs text-white/50">Accuracy</p>
+            <div className="bg-white/5 rounded-lg sm:rounded-xl p-2 sm:p-4 border border-white/10">
+              <p className="text-xl sm:text-3xl font-bold text-yellow-400">{accuracy}%</p>
+              <p className="text-[10px] sm:text-xs text-white/50">Accuracy</p>
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex gap-2 sm:gap-3">
             <button
               onClick={startGame}
-              className="flex-1 py-4 bg-white/10 hover:bg-white/20 rounded-xl font-bold transition-all border border-white/10"
+              className="flex-1 py-3 sm:py-4 bg-white/10 hover:bg-white/20 rounded-xl font-bold transition-all border border-white/10 text-sm sm:text-base"
             >
               Try Again
             </button>
@@ -352,7 +352,7 @@ export function RapidResponse({ config, waveColor, onComplete, onBack }: RapidRe
                 onComplete(score);
                 onBack();
               }}
-              className="flex-1 py-4 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl font-bold transition-all hover:scale-105"
+              className="flex-1 py-3 sm:py-4 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl font-bold transition-all hover:scale-105 text-sm sm:text-base"
             >
               Complete
             </button>

@@ -38,12 +38,12 @@ export default function DefenseHubPage() {
           <Link href="/" className="inline-block mb-4 text-white/60 hover:text-white text-sm">
             &larr; Back to GameBlitz
           </Link>
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="text-4xl">🇸🇬</span>
-            <h1 className="text-4xl md:text-5xl font-black">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 mb-2">
+            <span className="text-2xl sm:text-4xl">🇸🇬</span>
+            <h1 className="text-2xl sm:text-4xl md:text-5xl font-black">
               <span className="text-[#EF3340]">Total</span> Defence
             </h1>
-            <span className="text-4xl">🛡️</span>
+            <span className="text-2xl sm:text-4xl">🛡️</span>
           </div>
           <p className="text-white/60 max-w-md mx-auto">
             Defend Singapore through 4 challenging waves of action games and quizzes
@@ -51,20 +51,20 @@ export default function DefenseHubPage() {
         </div>
 
         {/* Stats Bar */}
-        <div className="flex justify-center gap-6 mb-8 phase-enter" style={{ animationDelay: '0.1s' }}>
+        <div className="flex justify-center gap-3 sm:gap-6 mb-8 phase-enter" style={{ animationDelay: '0.1s' }}>
           <div className="text-center">
-            <p className="text-3xl font-black text-[#FFD700]">{totalScore.toLocaleString()}</p>
-            <p className="text-xs text-white/50 uppercase tracking-wider">Total Score</p>
+            <p className="text-xl sm:text-3xl font-black text-[#FFD700]">{totalScore.toLocaleString()}</p>
+            <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">Total Score</p>
           </div>
           <div className="w-px bg-white/20" />
           <div className="text-center">
-            <p className="text-3xl font-black">{completedActivities}<span className="text-white/40">/{totalActivities}</span></p>
-            <p className="text-xs text-white/50 uppercase tracking-wider">Activities</p>
+            <p className="text-xl sm:text-3xl font-black">{completedActivities}<span className="text-white/40">/{totalActivities}</span></p>
+            <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">Activities</p>
           </div>
           <div className="w-px bg-white/20" />
           <div className="text-center">
-            <p className="text-3xl font-black text-[#EF3340]">{WAVES.filter((w) => isWaveUnlocked(w.id)).length}</p>
-            <p className="text-xs text-white/50 uppercase tracking-wider">Waves Unlocked</p>
+            <p className="text-xl sm:text-3xl font-black text-[#EF3340]">{WAVES.filter((w) => isWaveUnlocked(w.id)).length}</p>
+            <p className="text-[10px] sm:text-xs text-white/50 uppercase tracking-wider">Unlocked</p>
           </div>
         </div>
 
